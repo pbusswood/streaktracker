@@ -1,0 +1,27 @@
+<body id="contact-page">
+<%= form_for(@diary_entry, :html => { :class => "form-signin"} ) do |f| %>
+<h2>New Diary Entry</h2>
+	
+	<!--<div class="control-group warning">
+	<% if @diary_entry.errors.any? %>
+		<label class = "control-label" for "input warning">Something went wrong</label>
+		<% @diary_entry.errors.full_messages.each do |error| %>
+			<span class="help-inline"><%= error %></span>
+		<% end %>
+		</div>
+	<% end %>
+	</div>-->
+
+ <div>
+    <%= f.label :title %><%= f.text_field :title %>
+ </div>
+ <div>
+    <%= f.label :description %><%= f.text_area :description, :rows => "5" %>
+ </div>
+ <div>
+ 	<%= f.label :mood %><%= f.select :mood, DiaryEntry.allowed_types, :prompt => 'Select One' %>
+ </div>
+
+ 	<%= f.submit :class => "btn btn-primary" %> <p class="back">or go <%= link_to 'back', diary_entries_path %></p>
+	<% end %>
+</div>

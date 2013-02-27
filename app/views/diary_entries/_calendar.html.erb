@@ -1,0 +1,49 @@
+<div class="row" style="margin-top: 40px";>
+<div class='calendar well'>
+<div class="header lead" style="text-align: center";>
+	<%= link_to "← ", diary_entries_path(date: @date.to_date - 1.month) %>
+	<%= @date.strftime("%B %Y") %>
+	<%= link_to " →", diary_entries_path(date: @date.to_date + 1.month) %>
+</div>
+<table class='titles'>
+	<tr>
+		<td class='day smallcaps'>
+			Mon
+		</td>
+		<td class='day smallcaps'>
+			Tue
+		</td>
+		<td class='day smallcaps'>
+			Wed
+		</td>
+		<td class='day smallcaps'>
+			Thu
+		</td>
+		<td class='day smallcaps'>
+			Fri
+		</td>
+		<td class='day smallcaps'>
+			Sat
+		</td>
+		<td class='day smallcaps'>
+			Sun
+		</td>
+	</tr>
+</table>
+<table>
+	<% (@date.beginning_of_month.beginning_of_week.to_date..@date.end_of_month.end_of_week.to_date).each do |date| %>
+	<% if date.monday? %>
+		<tr class="week"></div>
+	<% end %>
+	<td class="day">
+		<%= link_to diary_entries_path(date: date), class: "link" do  %>
+			<%= date.day %>
+			<% if @diary_entry_month.include?(date) %>
+			<div class="streak"></div>
+			<% end %>
+		<% end %>
+	</td>
+	<% end %>
+</table>
+</div><!-- calendar well -->
+</div><!--row-->

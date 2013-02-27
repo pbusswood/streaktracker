@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="span6">
+        <%= render "calendar" %>
+    </div>
+    <div class="span5">
+        <h2><%= @date.strftime("%B %d %Y") %></h2>
+        <p class='unstyled'>There are <%= @diary_entries.length %> posts today. Maybe you should add one<%=" more" if @diary_entries.length > 0 %>?</p>
+
+        <%= link_to 'Add New Entry', new_diary_entry_path, :class => "btn btn-primary" %>
+
+<% @diary_entries.each do |d| %>
+        <p class="lead"><%= d.title %></p>
+        <blockquote>
+            <p><%= d.description %></p>
+            <p class ="small">Today's mood: <%= d.mood %></p>
+            <p class="smallcaps">Created <%= time_ago_in_words(d.created_at) %> ago</p>
+        </blockquote>
+    <!--<td><%= link_to 'Show', d %></td>
+    <td><%= link_to 'Edit', edit_diary_entry_path(d) %></td>
+    <td><%= link_to 'Destroy', d, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<% end %>
+
+<!--<% link_to "Previous Day", diary_entries_path(day: @date - 1.day) %>
+<% link_to "Next Day", diary_entries_path(day: @date + 1.day) %>
+<% link_to "New Diary Entry", new_diary_entry_path %>-->
+    </div>
+        </div>
