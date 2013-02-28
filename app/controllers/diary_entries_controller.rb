@@ -1,4 +1,5 @@
 class DiaryEntriesController < ApplicationController
+	http_basic_authenticate_with name: 'heather', password: 'hacklendarheather', except: :index
 
 	def index
 		if params[:date]
